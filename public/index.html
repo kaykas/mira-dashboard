@@ -25,11 +25,10 @@
   .badge-hold { background: #3F3F46; color: #A1A1AA; }
   .badge-running { background: #4C1D95; color: #C4B5FD; }
   .badge-owned { background: #701A75; color: #F0ABFC; }
+  .badge-current { background: #065F46; color: #6EE7B7; }
   .progress-bar { height: 6px; background: #27272A; border-radius: 3px; margin-top: 8px; overflow: hidden; }
   .progress-fill { height: 100%; border-radius: 3px; }
-  .progress-green { background: linear-gradient(90deg, #059669, #34D399); }
   .progress-blue { background: linear-gradient(90deg, #2563EB, #7C3AED); }
-  .progress-yellow { background: linear-gradient(90deg, #D97706, #FBBF24); }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .stat { text-align: center; padding: 14px 12px; background: #18181B; border: 1px solid #27272A; border-radius: 10px; }
@@ -49,13 +48,17 @@
   .health-needs-work { background: #FBBF24; }
   .health-not-started { background: #71717A; }
   .deal-highlight { border-color: #7C3AED; border-width: 2px; }
+  .activity-item { padding: 8px 12px; border-left: 2px solid #27272A; margin-bottom: 2px; display: flex; gap: 12px; font-size: 12px; }
+  .activity-time { color: #52525B; white-space: nowrap; min-width: 65px; font-variant-numeric: tabular-nums; }
+  .activity-text { color: #A1A1AA; }
+  .activity-section { margin-top: 8px; margin-bottom: 4px; font-size: 11px; font-weight: 600; color: #71717A; }
   @media (max-width: 600px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } body { padding: 16px; } }
 </style>
 </head>
 <body>
 
 <h1>Mira Project Dashboard</h1>
-<p class="subtitle">Updated Feb 6, 2026 2:52 PM PST</p>
+<p class="subtitle">Updated Feb 6, 2026 2:53 PM PST — refreshes hourly</p>
 
 <!-- SUMMARY STATS -->
 <div class="grid-3" style="margin-bottom: 28px;">
@@ -65,12 +68,94 @@
 </div>
 
 <!-- ============================================ -->
+<!-- RECENT ACTIVITY LOG -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">Recent Activity</div>
+  <div class="card">
+    <div class="card-body">
+      <div class="activity-section">TODAY — Feb 6, 2026</div>
+      <div class="activity-item"><span class="activity-time">2:52 PM</span><span class="activity-text">Favicons added to all 4 sites (AI Tools Digest, SaaS Versus, Dev Tool Reviews, ContentBrief.io)</span></div>
+      <div class="activity-item"><span class="activity-time">2:50 PM</span><span class="activity-text">Google Drive authenticated for jascha@kaykas.com — Drive, Gmail, Calendar all working</span></div>
+      <div class="activity-item"><span class="activity-time">2:42 PM</span><span class="activity-text">Dashboard deployed to Vercel (mira-dashboard-site.vercel.app)</span></div>
+      <div class="activity-item"><span class="activity-time">2:35 PM</span><span class="activity-text">Contact intelligence system built — relationship decay scoring, multi-source sync</span></div>
+      <div class="activity-item"><span class="activity-time">2:34 PM</span><span class="activity-text">YouTube experiment framework built — 3 A/B tests seeded (music, emoji, title format)</span></div>
+      <div class="activity-item"><span class="activity-time">2:33 PM</span><span class="activity-text">Fathom meeting extractor built — 18 meetings indexed from last 48h</span></div>
+      <div class="activity-item"><span class="activity-time">2:32 PM</span><span class="activity-text">iMessage extractor built — 259 messages extracted from last 48h</span></div>
+      <div class="activity-item"><span class="activity-time">2:31 PM</span><span class="activity-text">Knowledge extraction system built (conversation analysis via Claude)</span></div>
+      <div class="activity-item"><span class="activity-time">2:30 PM</span><span class="activity-text">Telegram recorder bot built (needs BotFather token to activate)</span></div>
+      <div class="activity-item"><span class="activity-time">2:15 PM</span><span class="activity-text">3 new Block Buddies videos produced and uploaded (Be a Giant vs Be Tiny, Super Speed vs Super Strength, Live Underwater vs Live in Space)</span></div>
+      <div class="activity-item"><span class="activity-time">1:00 PM</span><span class="activity-text">ContentBrief.io redesigned via Variant — merged layout deployed</span></div>
+      <div class="activity-item"><span class="activity-time">12:30 PM</span><span class="activity-text">DevToolReviews.com restyled — terminal green theme deployed</span></div>
+      <div class="activity-item"><span class="activity-time">12:15 PM</span><span class="activity-text">SaaSVersus.com restyled — evidence-based blue theme deployed</span></div>
+      <div class="activity-item"><span class="activity-time">11:45 AM</span><span class="activity-text">Article batch 2 complete: 3 articles each for AI Tools Digest and Dev Tool Reviews, 2 for SaaS Versus</span></div>
+      <div class="activity-item"><span class="activity-time">11:00 AM</span><span class="activity-text">ContentBrief.io Supabase auth wired up — migration run, env vars on Vercel</span></div>
+      <div class="activity-item"><span class="activity-time">10:00 AM</span><span class="activity-text">3 Block Buddies v3 videos with music published (Chocolate Ocean, Talk to Animals, Fly Low)</span></div>
+      <div class="activity-item"><span class="activity-time">9:00 AM</span><span class="activity-text">Variant designs generated for Booth Beacon (4 options) and ContentBrief.io (4 options)</span></div>
+      <div class="activity-item"><span class="activity-time">7:00 AM</span><span class="activity-text">X/Twitter research delivered (OpenClaw, Claude Code, autonomous agents)</span></div>
+      <div class="activity-item"><span class="activity-time">6:00 AM</span><span class="activity-text">Morning briefing delivered (calendar, email, weather)</span></div>
+
+      <div class="activity-section">YESTERDAY — Feb 5, 2026</div>
+      <div class="activity-item"><span class="activity-time">Evening</span><span class="activity-text">3 domains acquired: aitoolsdigest.com, saasversus.com, devtoolreviews.com — all connected to Vercel</span></div>
+      <div class="activity-item"><span class="activity-time">Afternoon</span><span class="activity-text">Keyword research complete (3 niches, 30 keywords), SaaS MVP spec, first digital product built</span></div>
+      <div class="activity-item"><span class="activity-time">Morning</span><span class="activity-text">YouTube quality research, 6 sample scripts approved, video assets generated</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- DAILY BRIEFING -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">Daily Briefing — 6:00 AM PST</div>
+  <div class="card">
+    <div class="card-title"><span class="badge badge-running">Running Daily</span> Morning Briefing</div>
+    <div class="card-body">
+      Delivered to Telegram every day at 6am. Covers:
+      <ul>
+        <li>Today's calendar events (work + personal)</li>
+        <li>Urgent unread emails (last 12h)</li>
+        <li>Weather forecast for San Francisco</li>
+        <li>Any overnight alerts or system issues</li>
+      </ul>
+      <p style="margin-top:6px">Last delivered: <strong>Feb 6, 2026 6:00 AM</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- OPENCLAW SYSTEM -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">OpenClaw System</div>
+  <div class="card">
+    <div class="card-title"><span class="badge badge-current">Up to Date</span> OpenClaw Software</div>
+    <div class="card-body">
+      <table class="table">
+        <tr><th>Detail</th><th>Value</th></tr>
+        <tr><td>Current version</td><td>2026.2.4 (commit 98a56ab38)</td></tr>
+        <tr><td>Available updates</td><td>0 pending patches</td></tr>
+        <tr><td>Model</td><td>Claude Opus 4.6 (anthropic/claude-opus-4-6)</td></tr>
+        <tr><td>Last update check</td><td>Feb 6, 2026</td></tr>
+      </table>
+      <p style="margin-top:8px; font-size:12px; color:#52525B;">Recent patches applied:</p>
+      <div style="font-size:11px; color:#52525B; font-family:monospace; margin-top:4px;">
+        98a56ab — Docs: Clear naming for the three Miras<br>
+        dd484cf — Fix: Use they/them pronouns for Mira<br>
+        6bbca67 — Council: Native tool integration with automatic routing<br>
+        06910e4 — Docs: Council integration status and usage guide<br>
+        8708df1 — Council: Enable Council integration for production use
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
 <!-- THE DEAL: $5K/MONTH AUTONOMOUS BUSINESS -->
 <!-- ============================================ -->
 <div class="section">
   <div class="section-header">The Deal — $5K/Month Autonomous Business</div>
 
-  <!-- Content Sites -->
   <div class="card deal-highlight">
     <div class="card-title"><span class="badge badge-live">Live and Improving</span> SEO Content Sites</div>
     <div class="card-body">
@@ -85,7 +170,6 @@
     </div>
   </div>
 
-  <!-- ContentBrief.io -->
   <div class="card deal-highlight">
     <div class="card-title"><span class="badge badge-live">Live and Improving</span> ContentBrief.io — Micro SaaS</div>
     <div class="card-body">
@@ -95,7 +179,6 @@
     </div>
   </div>
 
-  <!-- Digital Products -->
   <div class="card deal-highlight">
     <div class="card-title"><span class="badge badge-built">Built, Needs Listing</span> Digital Products — SEO Content OS</div>
     <div class="card-body">
@@ -105,7 +188,6 @@
     </div>
   </div>
 
-  <!-- YouTube -->
   <div class="card deal-highlight">
     <div class="card-title"><span class="badge badge-owned">Mira-Owned</span> YouTube Channels</div>
     <div class="card-body">
@@ -114,7 +196,7 @@
         <tr><td>Block Buddies</td><td>41 → 500 target</td><td>83K</td><td>150</td><td>v3 publishing, 3 experiments running</td></tr>
         <tr><td>Stellar Truths</td><td>37</td><td>14.7K</td><td>45</td><td>Scripts approved, production next</td></tr>
       </table>
-      <p style="margin-top:8px"><span class="next-action">Next:</span> Monitor v3 metrics, produce Stellar Truths batch, run A/B experiments (music, emoji, title format)</p>
+      <p style="margin-top:8px"><span class="next-action">Next:</span> Monitor v3 metrics, produce Stellar Truths batch, run A/B experiments</p>
       <p class="eta">Estimated: ST first batch by Feb 8, experiment results in 2 weeks</p>
     </div>
   </div>
@@ -125,11 +207,10 @@
 <!-- ============================================ -->
 <div class="section">
   <div class="section-header">All Websites — SEO Health</div>
-
   <div class="card">
     <div class="card-body">
       <table class="table">
-        <tr><th>Site</th><th>Purpose</th><th>GSC</th><th>GA4</th><th>Content</th><th>SEO Optimization</th></tr>
+        <tr><th>Site</th><th>Purpose</th><th>GSC</th><th>GA4</th><th>Content</th><th>SEO Status</th></tr>
         <tr>
           <td><span class="health-dot health-good"></span>aitoolsdigest.com</td>
           <td>AI tool reviews</td><td>Pending</td><td>Yes</td>
@@ -162,7 +243,7 @@
         </tr>
         <tr>
           <td><span class="health-dot health-good"></span>kaykas.com</td>
-          <td>Personal site</td><td>Yes</td><td>Yes</td>
+          <td>Personal brand</td><td>Yes</td><td>Yes</td>
           <td>Existing</td>
           <td><span class="health-dot health-not-started"></span>Not started</td>
         </tr>
@@ -180,6 +261,12 @@
         </tr>
         <tr>
           <td><span class="health-dot health-good"></span>whoissharon.com</td>
+          <td>Content</td><td>Yes</td><td>Yes</td>
+          <td>Existing</td>
+          <td><span class="health-dot health-not-started"></span>Not started</td>
+        </tr>
+        <tr>
+          <td><span class="health-dot health-good"></span>genesovereign.org</td>
           <td>Content</td><td>Yes</td><td>Yes</td>
           <td>Existing</td>
           <td><span class="health-dot health-not-started"></span>Not started</td>
@@ -213,7 +300,7 @@
     </div>
   </div>
   <div class="card">
-    <div class="card-title"><span class="badge badge-hold">On Hold</span> Booth Beacon Redesign</div>
+    <div class="card-title"><span class="badge badge-hold">On Hold</span> Booth Beacon Site Redesign</div>
     <div class="card-body">4 Variant design options saved. Paused per Jascha — resume when ready.</div>
   </div>
 </div>
@@ -223,43 +310,41 @@
 <!-- ============================================ -->
 <div class="section">
   <div class="section-header">Infrastructure and Intelligence Systems</div>
-
   <div class="grid-2">
     <div class="card">
       <div class="card-title"><span class="badge badge-built">Built, Needs Daily Automation</span></div>
       <div class="card-body">
         <strong>Knowledge Extraction</strong><br>
-        Extracts learnings from conversations, iMessages, and meetings. Scripts working. Needs to be scheduled to run automatically every day.
-        <p class="eta">Estimated: automated by Feb 7</p>
+        Extracts learnings from conversations, iMessages, and meetings. Scripts work when run manually. Needs to be scheduled to run daily without human intervention.
+        <p class="eta">Mira will set this up by Feb 7</p>
       </div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="badge badge-deployed">Built and Deployed</span></div>
+      <div class="card-title"><span class="badge badge-deployed">Built and Running</span></div>
       <div class="card-body">
         <strong>Fathom Meeting Intelligence</strong><br>
         Pulls meeting transcripts after calls, extracts people context and action items. 18 meetings already indexed.
       </div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="badge badge-deployed">Built and Deployed</span></div>
+      <div class="card-title"><span class="badge badge-deployed">Built and Running</span></div>
       <div class="card-body">
         <strong>Contact Intelligence / People Graph</strong><br>
         Tracks relationship health with decay scoring. Alerts when important contacts go cold. Syncs from Telegram, Gmail, iMessage.
       </div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="badge badge-deployed">Built and Deployed</span></div>
+      <div class="card-title"><span class="badge badge-deployed">Built and Running</span></div>
       <div class="card-body">
         <strong>YouTube Experiment Framework</strong><br>
-        A/B testing for content (music vs no music, emoji titles, question vs statement). 3 experiments running.
+        A/B testing for content (music vs no music, emoji titles, question vs statement). 3 experiments active.
       </div>
     </div>
     <div class="card">
-      <div class="card-title"><span class="badge badge-built">Built, Needs Bot Token</span></div>
+      <div class="card-title"><span class="badge badge-built">Built, Waiting on Jascha</span></div>
       <div class="card-body">
         <strong>Telegram Message Recorder</strong><br>
-        Logs all Telegram messages for knowledge extraction. Ready to deploy once Jascha creates the bot via @BotFather.
-        <p class="eta">Estimated: live within 5 min of receiving token</p>
+        Logs all Telegram messages for knowledge extraction. Ready to go — Jascha needs to create a bot via @BotFather (60 seconds).
       </div>
     </div>
     <div class="card">
@@ -267,15 +352,15 @@
       <div class="card-body">
         <strong>Weekly "Act on Learnings" Review</strong><br>
         Automated weekly review of extracted knowledge — what to act on vs. archive.
-        <p class="eta">Estimated: built by Feb 8</p>
+        <p class="eta">Mira will build by Feb 8</p>
       </div>
     </div>
     <div class="card">
       <div class="card-title"><span class="badge badge-not-built">Not Yet Built</span></div>
       <div class="card-body">
         <strong>Two-Tier Compute</strong><br>
-        Formalize which tasks use cheap models (Sonnet) vs. expensive ones (Opus/Council) to control costs.
-        <p class="eta">Estimated: built by Feb 9</p>
+        Formalize which tasks use cheap models (Sonnet) vs. expensive ones (Opus) to control costs.
+        <p class="eta">Mira will build by Feb 9</p>
       </div>
     </div>
     <div class="card">
@@ -283,7 +368,7 @@
       <div class="card-body">
         <strong>Container Isolation</strong><br>
         Sandbox tool execution for safety. Research phase.
-        <p class="eta">Estimated: Feb 12</p>
+        <p class="eta">Mira will build by Feb 12</p>
       </div>
     </div>
   </div>
@@ -301,9 +386,10 @@
         <tr><td>Morning briefing (calendar, email, weather)</td><td>6am daily</td><td><span class="badge badge-running">Running</span></td></tr>
         <tr><td>X/Twitter research (OpenClaw, Claude Code, agents)</td><td>7am daily</td><td><span class="badge badge-running">Running</span></td></tr>
         <tr><td>VM competitive analysis (15 competitors)</td><td>Monday 8am</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>OpenClaw software updates check</td><td>Daily</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>Knowledge extraction (conversations, meetings, messages)</td><td>Daily</td><td><span class="badge badge-built">Needs to be scheduled</span></td></tr>
-        <tr><td>Weekly learnings review</td><td>Weekly</td><td><span class="badge badge-not-built">Not yet built</span></td></tr>
+        <tr><td>OpenClaw software update check</td><td>Daily</td><td><span class="badge badge-running">Running</span></td></tr>
+        <tr><td>Dashboard refresh</td><td>Hourly</td><td><span class="badge badge-running">Running</span></td></tr>
+        <tr><td>Knowledge extraction (conversations, meetings)</td><td>Daily</td><td><span class="badge badge-built">Mira setting up by Feb 7</span></td></tr>
+        <tr><td>Weekly learnings review</td><td>Weekly</td><td><span class="badge badge-not-built">Mira building by Feb 8</span></td></tr>
       </table>
     </div>
   </div>
@@ -315,13 +401,13 @@
 <div class="section">
   <div class="section-header">Jascha To Do Next</div>
   <ul class="todo-list">
-    <li><strong>Pick payment platform</strong> — Lemon Squeezy (recommended, handles tax + SaaS + digital products in one) or Stripe + Gumroad separately. Mira wires up the integration once you decide.</li>
-    <li><strong>Create BotFather token</strong> — Follow the steps Mira sent. Takes 60 seconds. Unlocks automatic message recording for knowledge extraction.</li>
+    <li><strong>Pick payment platform</strong> — Lemon Squeezy (recommended — handles tax, SaaS subscriptions, and digital products in one platform) or Stripe + Gumroad separately. Mira wires up the integration once decided.</li>
+    <li><strong>Create BotFather token</strong> — Open Telegram → search @BotFather → /newbot → name it "Mira Recorder" → send the token to Mira. Takes 60 seconds. Unlocks automatic message recording.</li>
     <li><strong>Verify contentbrief.io auth</strong> — Visit contentbrief.io, try signing up. Let Mira know if it works or breaks.</li>
   </ul>
 </div>
 
-<p style="font-size: 11px; color: #52525B; margin-top: 32px; text-align: center;">Generated by Mira — auto-updates at mira-dashboard-site.vercel.app</p>
+<p style="font-size: 11px; color: #52525B; margin-top: 32px; text-align: center;">Generated by Mira — auto-refreshes hourly at mira-dashboard-site.vercel.app</p>
 
 </body>
 </html>
