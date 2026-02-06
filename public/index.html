@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mira — Project Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0F1117; color: #E4E4E7; line-height: 1.5; padding: 24px; max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: #71717A; margin-bottom: 28px; }
+  .section { margin-bottom: 28px; }
+  .section-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #71717A; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #27272A; }
+  .card { background: #18181B; border: 1px solid #27272A; border-radius: 10px; padding: 16px; margin-bottom: 10px; }
+  .card-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card-meta { font-size: 12px; color: #71717A; margin-bottom: 8px; }
+  .card-body { font-size: 13px; color: #A1A1AA; }
+  .card-body ul { padding-left: 16px; margin-top: 4px; }
+  .card-body li { margin-bottom: 3px; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 4px; }
+  .badge-live { background: #065F46; color: #6EE7B7; }
+  .badge-building { background: #92400E; color: #FCD34D; }
+  .badge-planned { background: #1E3A5F; color: #93C5FD; }
+  .badge-blocked { background: #7F1D1D; color: #FCA5A5; }
+  .badge-hold { background: #3F3F46; color: #A1A1AA; }
+  .badge-auto { background: #4C1D95; color: #C4B5FD; }
+  .progress-bar { height: 6px; background: #27272A; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #2563EB, #7C3AED); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat { text-align: center; padding: 12px; background: #18181B; border: 1px solid #27272A; border-radius: 10px; }
+  .stat-value { font-size: 24px; font-weight: 700; color: #fff; }
+  .stat-label { font-size: 11px; color: #71717A; margin-top: 2px; }
+  .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .table th { text-align: left; font-size: 11px; font-weight: 600; color: #71717A; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 10px; border-bottom: 1px solid #27272A; }
+  .table td { padding: 8px 10px; border-bottom: 1px solid #1E1E22; color: #A1A1AA; }
+  .table td:first-child { color: #E4E4E7; font-weight: 500; }
+  .blocked-list { list-style: none; }
+  .blocked-list li { padding: 8px 12px; background: #1C1012; border-left: 3px solid #EF4444; margin-bottom: 6px; border-radius: 0 6px 6px 0; font-size: 13px; }
+  .blocked-list li strong { color: #FCA5A5; }
+  .next-action { color: #93C5FD; font-weight: 500; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } body { padding: 16px; } }
+</style>
+</head>
+<body>
+
+<h1>Mira Project Dashboard</h1>
+<p class="subtitle">Updated Feb 6, 2026 2:38 PM PST — 17 active workstreams</p>
+
+<!-- SUMMARY STATS -->
+<div class="grid-2" style="margin-bottom: 28px;">
+  <div class="stat"><div class="stat-value">17</div><div class="stat-label">Active Projects</div></div>
+  <div class="stat"><div class="stat-value">3</div><div class="stat-label">Blocked</div></div>
+  <div class="stat"><div class="stat-value">4</div><div class="stat-label">Automated Crons</div></div>
+  <div class="stat"><div class="stat-value">$0</div><div class="stat-label">Monthly Revenue</div></div>
+</div>
+
+<!-- $5K BUSINESS -->
+<div class="section">
+  <div class="section-header">$5K/Month Autonomous Business</div>
+
+  <div class="card">
+    <div class="card-title"><span class="badge badge-live">Live</span> SEO Content Sites</div>
+    <div class="card-body">
+      <table class="table">
+        <tr><th>Site</th><th>Articles</th><th>Progress</th></tr>
+        <tr><td>aitoolsdigest.com</td><td>11 / 15</td><td><div class="progress-bar"><div class="progress-fill" style="width:73%"></div></div></td></tr>
+        <tr><td>saasversus.com</td><td>10 / 15</td><td><div class="progress-bar"><div class="progress-fill" style="width:67%"></div></div></td></tr>
+        <tr><td>devtoolreviews.com</td><td>11 / 15</td><td><div class="progress-bar"><div class="progress-fill" style="width:73%"></div></div></td></tr>
+      </table>
+      <p style="margin-top:8px"><span class="next-action">Next:</span> 4-5 more articles per site, then GSC sitemaps + SEO optimization</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="badge badge-building">Building</span> ContentBrief.io — Micro SaaS</div>
+    <div class="card-body">
+      Pipeline functional (Brave → Cheerio → Claude → brief). Supabase auth wired. Variant redesign deployed.
+      <p style="margin-top:6px"><span class="next-action">Next:</span> Verify auth flow works, then Stripe ($29 Freelancer / $99 Agency)</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="badge badge-blocked">Blocked</span> Digital Products — SEO Content OS</div>
+    <div class="card-body">
+      7 Notion templates ready. $34 price point.
+      <p style="margin-top:6px"><span class="next-action">Blocked:</span> Need Gumroad account created</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="badge badge-live">Mira-Owned</span> YouTube Channels</div>
+    <div class="card-body">
+      <table class="table">
+        <tr><th>Channel</th><th>Subs</th><th>Views</th><th>Videos</th><th>Status</th></tr>
+        <tr><td>Block Buddies</td><td>41 → 500</td><td>83K</td><td>147</td><td>v3 approved, publishing</td></tr>
+        <tr><td>Stellar Truths</td><td>37</td><td>14.7K</td><td>45</td><td>Scripts approved, needs production</td></tr>
+      </table>
+      <p style="margin-top:8px"><span class="next-action">Next:</span> Monitor v3 performance, produce more BB + first ST batch</p>
+    </div>
+  </div>
+</div>
+
+<!-- INFRASTRUCTURE -->
+<div class="section">
+  <div class="section-header">Infrastructure &amp; Systems</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="badge badge-building">Built</span> Knowledge Extraction</div>
+      <div class="card-body">Conversation + iMessage + Fathom extractors built. <span class="next-action">Next:</span> Daily cron</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-building">Built</span> Contact Intelligence</div>
+      <div class="card-body">Relationship decay scoring, multi-source sync. <span class="next-action">Next:</span> Wire Fathom post-meeting enrichment</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-building">Built</span> YouTube Experiments</div>
+      <div class="card-body">3 A/B tests seeded (music, emoji, question titles). <span class="next-action">Next:</span> Log videos, pull metrics</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-planned">Planned</span> Weekly Review</div>
+      <div class="card-body">"Should we act on learnings" cadence. <span class="next-action">Next:</span> Set up cron</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-planned">Planned</span> Two-Tier Compute</div>
+      <div class="card-body">Formalize which tasks use Sonnet/Haiku vs Opus/Council</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-planned">Planned</span> Auto Experimentation</div>
+      <div class="card-body">A/B test content approaches across sites + YouTube</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-planned">Planned</span> Container Isolation</div>
+      <div class="card-body">Isolate tool execution for safety</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="badge badge-building">In Progress</span> Prompt Bloat Trim</div>
+      <div class="card-body">Reducing context size per turn to save tokens</div>
+    </div>
+  </div>
+</div>
+
+<!-- VISITING MEDIA -->
+<div class="section">
+  <div class="section-header">Visiting Media</div>
+  <div class="card">
+    <div class="card-title"><span class="badge badge-auto">Automated</span> Competitive Analysis</div>
+    <div class="card-body">15 competitors tracked. Weekly report Mon 8am. First analysis delivered.</div>
+  </div>
+</div>
+
+<!-- SEO PORTFOLIO -->
+<div class="section">
+  <div class="section-header">SEO Portfolio (6 Sites)</div>
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <tr><th>Site</th><th>GSC</th><th>GA4</th><th>Optimized</th></tr>
+        <tr><td>boothbeacon.org</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+        <tr><td>kaykas.com</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+        <tr><td>onbeingright.com</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+        <tr><td>whoissharon.com</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+        <tr><td>genesovereign.org</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+        <tr><td>deareleanore.com</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+      </table>
+      <p style="margin-top:8px"><span class="next-action">Next:</span> Meta tags, schema markup, internal linking, content gaps</p>
+    </div>
+  </div>
+</div>
+
+<!-- BOOTH BEACON -->
+<div class="section">
+  <div class="section-header">Booth Beacon</div>
+  <div class="card">
+    <div class="card-title"><span class="badge badge-hold">On Hold</span> Booth Beacon</div>
+    <div class="card-body">926 booths, 160 sources. Firecrawl v4 live. 4 Variant redesign options saved. City guides planned. Paused per Jascha.</div>
+  </div>
+</div>
+
+<!-- AUTOMATED JOBS -->
+<div class="section">
+  <div class="section-header">Automated Jobs</div>
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <tr><th>Job</th><th>Schedule</th><th>Status</th></tr>
+        <tr><td>Morning Briefing</td><td>6am daily</td><td><span class="badge badge-auto">Running</span></td></tr>
+        <tr><td>X/Twitter Research</td><td>7am daily</td><td><span class="badge badge-auto">Running</span></td></tr>
+        <tr><td>VM Competitive</td><td>Mon 8am</td><td><span class="badge badge-auto">Running</span></td></tr>
+        <tr><td>OpenClaw Updates</td><td>Daily</td><td><span class="badge badge-auto">Running</span></td></tr>
+        <tr><td>Knowledge Extraction</td><td>TBD</td><td><span class="badge badge-planned">Needs Cron</span></td></tr>
+        <tr><td>Weekly Review</td><td>TBD</td><td><span class="badge badge-planned">Needs Cron</span></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- BLOCKED -->
+<div class="section">
+  <div class="section-header">Blocked Items</div>
+  <ul class="blocked-list">
+    <li><strong>Gumroad account</strong> — Jascha needs to create for SEO Content OS listing</li>
+    <li><strong>Google Drive auth</strong> — Jascha needs to approve browser OAuth flow</li>
+    <li><strong>ContentBrief.io auth</strong> — Needs verification after redesign (two agents pushed conflicting code)</li>
+  </ul>
+</div>
+
+<p style="font-size: 11px; color: #52525B; margin-top: 32px; text-align: center;">Generated by Mira — refreshed on demand or with each status update</p>
+
+</body>
+</html>
