@@ -1,0 +1,338 @@
+{
+  "generated": "2026-02-07T15:55:10.808210Z",
+  "repos": [
+    {
+      "name": "mira-dashboard",
+      "pushedAt": "2026-02-07T15:01:45Z",
+      "updatedAt": "2026-02-07T15:01:49Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "ai-tools-digest",
+      "pushedAt": "2026-02-07T08:09:53Z",
+      "updatedAt": "2026-02-07T08:09:57Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "saas-versus",
+      "pushedAt": "2026-02-07T08:09:45Z",
+      "updatedAt": "2026-02-07T08:09:48Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "dev-tool-reviews",
+      "pushedAt": "2026-02-07T08:09:31Z",
+      "updatedAt": "2026-02-07T08:09:35Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "mira-outbound",
+      "pushedAt": "2026-02-07T08:05:30Z",
+      "updatedAt": "2026-02-07T08:05:33Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "mira-mission-control",
+      "pushedAt": "2026-02-07T04:30:54Z",
+      "updatedAt": "2026-02-07T04:31:12Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "content-brief-generator",
+      "pushedAt": "2026-02-07T02:08:04Z",
+      "updatedAt": "2026-02-07T02:08:07Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "booth-beacon-app",
+      "pushedAt": "2026-02-07T01:20:31Z",
+      "updatedAt": "2026-02-07T01:20:34Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "on-being-right",
+      "pushedAt": "2026-02-06T06:07:21Z",
+      "updatedAt": "2026-02-06T06:07:25Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "kaykas-com",
+      "pushedAt": "2026-02-06T06:06:52Z",
+      "updatedAt": "2026-02-06T06:06:56Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "fisher-visit-clone",
+      "pushedAt": "2026-02-06T05:46:45Z",
+      "updatedAt": "2026-02-06T05:46:48Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "booth-beacon",
+      "pushedAt": "2026-02-05T19:53:12Z",
+      "updatedAt": "2026-02-05T19:53:16Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "gene-sovereign-codex",
+      "pushedAt": "2026-02-04T23:27:08Z",
+      "updatedAt": "2026-02-04T23:27:13Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "sharon-pyramid",
+      "pushedAt": "2026-02-04T23:18:47Z",
+      "updatedAt": "2026-02-04T23:18:50Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "mira-deployment",
+      "pushedAt": "2026-02-04T23:16:47Z",
+      "updatedAt": "2026-02-04T23:16:50Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "sales-ramp-ai",
+      "pushedAt": "2026-02-04T16:02:14Z",
+      "updatedAt": "2026-02-04T16:07:04Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "suzanne-real-estate-website",
+      "pushedAt": "2026-02-03T05:35:49Z",
+      "updatedAt": "2026-02-03T05:35:52Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "marty-fischer-website",
+      "pushedAt": "2026-02-02T02:31:10Z",
+      "updatedAt": "2026-02-02T02:31:14Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "alexandra-schedule",
+      "pushedAt": "2026-02-01T23:16:01Z",
+      "updatedAt": "2026-02-01T23:16:04Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "custody-calendar",
+      "pushedAt": "2026-01-29T21:19:27Z",
+      "updatedAt": "2026-01-29T21:19:31Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "eleanore-a940dffd",
+      "pushedAt": "2026-01-26T19:36:14Z",
+      "updatedAt": "2026-01-26T19:36:18Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "mono-method",
+      "pushedAt": "2026-01-24T07:40:00Z",
+      "updatedAt": "2026-01-24T07:40:04Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "julien-portfolio",
+      "pushedAt": "2026-01-23T06:52:54Z",
+      "updatedAt": "2026-01-23T06:52:58Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "visitingmedia-nextjs",
+      "pushedAt": "2026-01-23T01:59:01Z",
+      "updatedAt": "2026-01-23T01:59:06Z",
+      "visibility": "PUBLIC"
+    },
+    {
+      "name": "VisitingMedia",
+      "pushedAt": "2026-01-21T22:46:32Z",
+      "updatedAt": "2026-01-21T22:57:04Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "unified-memory-cloud",
+      "pushedAt": "2026-01-21T15:35:35Z",
+      "updatedAt": "2026-01-21T22:57:05Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "eleanore",
+      "pushedAt": "2026-01-19T08:02:45Z",
+      "updatedAt": "2026-01-19T08:02:48Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "chris-craft-microsite",
+      "pushedAt": "2026-01-16T20:58:27Z",
+      "updatedAt": "2026-01-21T22:57:08Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "hotel-scraping-sdk",
+      "pushedAt": "2026-01-13T00:00:17Z",
+      "updatedAt": "2026-01-13T00:00:21Z",
+      "visibility": "PRIVATE"
+    },
+    {
+      "name": "blockbuddies-website",
+      "pushedAt": "2025-12-29T15:28:56Z",
+      "updatedAt": "2026-01-21T22:57:09Z",
+      "visibility": "PRIVATE"
+    }
+  ],
+  "recentCommits": [
+    {
+      "repo": "mira-dashboard",
+      "message": "Dashboard refresh: Feb 7, 2026 7:01 AM PST",
+      "date": "2026-02-07T15:01:45Z"
+    },
+    {
+      "repo": "mira-dashboard",
+      "message": "Dashboard refresh: Feb 7, 2026 6:01 AM PST",
+      "date": "2026-02-07T14:02:04Z"
+    },
+    {
+      "repo": "mira-dashboard",
+      "message": "Dashboard refresh: Feb 7, 2026 5:00 AM \u2014 overnight work logged",
+      "date": "2026-02-07T13:00:38Z"
+    },
+    {
+      "repo": "mira-dashboard",
+      "message": "Dashboard refresh: Feb 7, 2026 4:00 AM",
+      "date": "2026-02-07T12:00:19Z"
+    },
+    {
+      "repo": "mira-dashboard",
+      "message": "Dashboard refresh: Feb 7 3:00 AM",
+      "date": "2026-02-07T11:00:20Z"
+    },
+    {
+      "repo": "ai-tools-digest",
+      "message": "Add 3 new SEO articles: AI transcription tools, DALL-E vs Midjourney vs SD, AI c",
+      "date": "2026-02-07T08:09:52Z"
+    },
+    {
+      "repo": "saas-versus",
+      "message": "Add 3 new SEO comparison articles",
+      "date": "2026-02-07T08:09:44Z"
+    },
+    {
+      "repo": "dev-tool-reviews",
+      "message": "Add 3 new comparison articles: Database GUIs, Container Runtimes, API Testing To",
+      "date": "2026-02-07T08:09:30Z"
+    },
+    {
+      "repo": "mira-outbound",
+      "message": "Fix: graceful middleware when Supabase env vars missing (fixes 5xx spike)",
+      "date": "2026-02-07T08:05:29Z"
+    },
+    {
+      "repo": "mira-outbound",
+      "message": "Fix: handle missing Supabase env vars for build",
+      "date": "2026-02-07T04:39:36Z"
+    },
+    {
+      "repo": "mira-mission-control",
+      "message": "Fix: remove all placeholder/fake data, show only verified numbers",
+      "date": "2026-02-07T04:30:53Z"
+    },
+    {
+      "repo": "mira-outbound",
+      "message": "Phase 1 MVP: Auth, onboarding, dashboard, prospects",
+      "date": "2026-02-07T04:29:30Z"
+    },
+    {
+      "repo": "mira-mission-control",
+      "message": "Initial commit: Mission Control dashboard",
+      "date": "2026-02-07T04:14:30Z"
+    },
+    {
+      "repo": "mira-mission-control",
+      "message": "Initial commit from Create Next App",
+      "date": "2026-02-07T04:11:42Z"
+    },
+    {
+      "repo": "dev-tool-reviews",
+      "message": "Add 3 new reviews: AI editors, serverless DBs, deployment platforms",
+      "date": "2026-02-07T04:02:46Z"
+    },
+    {
+      "repo": "saas-versus",
+      "message": "Add 3 new comparisons: wikis, automation, project management",
+      "date": "2026-02-07T04:02:32Z"
+    },
+    {
+      "repo": "ai-tools-digest",
+      "message": "Add 3 new articles: AI writing tools, chatbot comparison, content automation",
+      "date": "2026-02-07T04:01:45Z"
+    },
+    {
+      "repo": "content-brief-generator",
+      "message": "fix: add emailRedirectTo in signup for proper confirmation flow",
+      "date": "2026-02-07T02:08:03Z"
+    },
+    {
+      "repo": "mira-outbound",
+      "message": "Restyle: architectural premium design per Variant direction",
+      "date": "2026-02-07T02:02:15Z"
+    },
+    {
+      "repo": "booth-beacon-app",
+      "message": "fix: reduce revalidation frequency to prevent Vercel function spikes",
+      "date": "2026-02-07T01:20:30Z"
+    },
+    {
+      "repo": "ai-tools-digest",
+      "message": "fix: add remark-gfm for markdown table rendering",
+      "date": "2026-02-07T01:00:44Z"
+    },
+    {
+      "repo": "mira-outbound",
+      "message": "Restyle: dark theme, bold typography, electric blue accents",
+      "date": "2026-02-07T00:54:14Z"
+    },
+    {
+      "repo": "content-brief-generator",
+      "message": "Complete site redesign: consistent nav, footer, dashboard styling, auth pages, p",
+      "date": "2026-02-07T00:03:53Z"
+    },
+    {
+      "repo": "content-brief-generator",
+      "message": "Fix: enable auth middleware for session persistence across pages",
+      "date": "2026-02-07T00:02:27Z"
+    },
+    {
+      "repo": "content-brief-generator",
+      "message": "feat: implement auth flow - login, signup, callback, dashboard protection",
+      "date": "2026-02-06T23:57:24Z"
+    },
+    {
+      "repo": "ai-tools-digest",
+      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
+      "date": "2026-02-06T22:49:56Z"
+    },
+    {
+      "repo": "saas-versus",
+      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
+      "date": "2026-02-06T22:49:56Z"
+    },
+    {
+      "repo": "dev-tool-reviews",
+      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
+      "date": "2026-02-06T22:49:56Z"
+    },
+    {
+      "repo": "content-brief-generator",
+      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
+      "date": "2026-02-06T22:49:56Z"
+    },
+    {
+      "repo": "dev-tool-reviews",
+      "message": "Add 3 new comparison articles: Vercel vs Netlify, PostgreSQL vs MySQL, VS Code v",
+      "date": "2026-02-06T22:11:14Z"
+    }
+  ],
+  "repoCount": 30
+}
