@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-07T15:55:10.808210Z",
+  "generated": "2026-02-07T17:00:40.229274+00:00",
   "repos": [
     {
       "name": "mira-dashboard",
@@ -185,6 +185,12 @@
   "recentCommits": [
     {
       "repo": "mira-dashboard",
+      "message": "Dashboard refresh: Feb 7, 2026 9:00 AM PST",
+      "date": "2026-02-07T17:00:40.229396+00:00",
+      "author": "mira-bot"
+    },
+    {
+      "repo": "mira-dashboard",
       "message": "Dashboard refresh: Feb 7, 2026 7:01 AM PST",
       "date": "2026-02-07T15:01:45Z"
     },
@@ -277,61 +283,6 @@
       "repo": "mira-outbound",
       "message": "Restyle: architectural premium design per Variant direction",
       "date": "2026-02-07T02:02:15Z"
-    },
-    {
-      "repo": "booth-beacon-app",
-      "message": "fix: reduce revalidation frequency to prevent Vercel function spikes",
-      "date": "2026-02-07T01:20:30Z"
-    },
-    {
-      "repo": "ai-tools-digest",
-      "message": "fix: add remark-gfm for markdown table rendering",
-      "date": "2026-02-07T01:00:44Z"
-    },
-    {
-      "repo": "mira-outbound",
-      "message": "Restyle: dark theme, bold typography, electric blue accents",
-      "date": "2026-02-07T00:54:14Z"
-    },
-    {
-      "repo": "content-brief-generator",
-      "message": "Complete site redesign: consistent nav, footer, dashboard styling, auth pages, p",
-      "date": "2026-02-07T00:03:53Z"
-    },
-    {
-      "repo": "content-brief-generator",
-      "message": "Fix: enable auth middleware for session persistence across pages",
-      "date": "2026-02-07T00:02:27Z"
-    },
-    {
-      "repo": "content-brief-generator",
-      "message": "feat: implement auth flow - login, signup, callback, dashboard protection",
-      "date": "2026-02-06T23:57:24Z"
-    },
-    {
-      "repo": "ai-tools-digest",
-      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
-      "date": "2026-02-06T22:49:56Z"
-    },
-    {
-      "repo": "saas-versus",
-      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
-      "date": "2026-02-06T22:49:56Z"
-    },
-    {
-      "repo": "dev-tool-reviews",
-      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
-      "date": "2026-02-06T22:49:56Z"
-    },
-    {
-      "repo": "content-brief-generator",
-      "message": "Add brand favicons (SVG, ICO, PNG) and update layout metadata",
-      "date": "2026-02-06T22:49:56Z"
-    },
-    {
-      "repo": "dev-tool-reviews",
-      "message": "Add 3 new comparison articles: Vercel vs Netlify, PostgreSQL vs MySQL, VS Code v",
-      "date": "2026-02-06T22:11:14Z"
     }
   ],
   "repoCount": 30

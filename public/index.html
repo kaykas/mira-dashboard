@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mira — Project Dashboard</title>
+<title>Mission Control — Revenue Dashboard</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0F1117; color: #E4E4E7; line-height: 1.5; padding: 24px; max-width: 960px; margin: 0 auto; }
@@ -12,472 +12,332 @@
   .section { margin-bottom: 32px; }
   .section-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: #71717A; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #27272A; }
   .card { background: #18181B; border: 1px solid #27272A; border-radius: 10px; padding: 16px; margin-bottom: 10px; }
-  .card-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .card-body { font-size: 13px; color: #A1A1AA; }
-  .card-body ul { padding-left: 16px; margin-top: 4px; }
-  .card-body li { margin-bottom: 3px; }
-  .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
-  .badge-live { background: #065F46; color: #6EE7B7; }
-  .badge-improving { background: #065F46; color: #6EE7B7; }
-  .badge-deployed { background: #1E3A5F; color: #93C5FD; }
-  .badge-built { background: #92400E; color: #FCD34D; }
-  .badge-not-built { background: #7F1D1D; color: #FCA5A5; }
-  .badge-hold { background: #3F3F46; color: #A1A1AA; }
-  .badge-running { background: #4C1D95; color: #C4B5FD; }
-  .badge-owned { background: #701A75; color: #F0ABFC; }
-  .badge-current { background: #065F46; color: #6EE7B7; }
-  .progress-bar { height: 6px; background: #27272A; border-radius: 3px; margin-top: 8px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 3px; }
-  .progress-blue { background: linear-gradient(90deg, #2563EB, #7C3AED); }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
   .stat { text-align: center; padding: 14px 12px; background: #18181B; border: 1px solid #27272A; border-radius: 10px; }
   .stat-value { font-size: 24px; font-weight: 700; color: #fff; }
+  .stat-value.red { color: #EF4444; }
+  .stat-value.green { color: #34D399; }
+  .stat-value.yellow { color: #FBBF24; }
   .stat-label { font-size: 11px; color: #71717A; margin-top: 2px; }
+  .stat-sub { font-size: 10px; color: #52525B; margin-top: 2px; }
+
+  /* Revenue hero */
+  .revenue-hero { text-align: center; padding: 28px 16px; background: linear-gradient(135deg, #18181B 0%, #1a1520 100%); border: 2px solid #27272A; border-radius: 14px; margin-bottom: 20px; }
+  .revenue-hero .mrr { font-size: 48px; font-weight: 800; color: #EF4444; }
+  .revenue-hero .target { font-size: 14px; color: #71717A; margin-top: 4px; }
+  .revenue-hero .target strong { color: #A1A1AA; }
+  .progress-bar { height: 8px; background: #27272A; border-radius: 4px; margin-top: 12px; overflow: hidden; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #EF4444, #F59E0B); min-width: 2px; }
+  .progress-label { font-size: 10px; color: #52525B; margin-top: 4px; }
+
+  /* Channel breakdown */
+  .channel-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1E1E22; font-size: 13px; }
+  .channel-row:last-child { border-bottom: none; }
+  .channel-name { color: #A1A1AA; }
+  .channel-revenue { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .channel-status { font-size: 11px; color: #52525B; }
+
+  /* YouTube tracker */
+  .yt-channel { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid #1E1E22; }
+  .yt-channel:last-child { border-bottom: none; }
+  .yt-name { font-weight: 600; color: #fff; font-size: 14px; min-width: 130px; }
+  .yt-subs { font-size: 13px; color: #A1A1AA; min-width: 100px; }
+  .yt-bar { flex: 1; height: 6px; background: #27272A; border-radius: 3px; overflow: hidden; }
+  .yt-bar-fill { height: 100%; border-radius: 3px; background: #EF4444; }
+  .yt-pct { font-size: 11px; color: #52525B; min-width: 40px; text-align: right; }
+
+  /* Table */
   .table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .table th { text-align: left; font-size: 11px; font-weight: 600; color: #71717A; text-transform: uppercase; letter-spacing: 0.5px; padding: 6px 10px; border-bottom: 1px solid #27272A; }
   .table td { padding: 8px 10px; border-bottom: 1px solid #1E1E22; color: #A1A1AA; }
   .table td:first-child { color: #E4E4E7; font-weight: 500; }
-  .todo-list { list-style: none; }
-  .todo-list li { padding: 10px 12px; background: #1A1520; border-left: 3px solid #A78BFA; margin-bottom: 6px; border-radius: 0 6px 6px 0; font-size: 13px; }
-  .todo-list li strong { color: #C4B5FD; }
-  .next-action { color: #93C5FD; font-weight: 500; }
-  .eta { color: #71717A; font-size: 11px; font-style: italic; }
+
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .badge-live { background: #065F46; color: #6EE7B7; }
+  .badge-building { background: #92400E; color: #FCD34D; }
+  .badge-blocked { background: #7F1D1D; color: #FCA5A5; }
+  .badge-hold { background: #3F3F46; color: #A1A1AA; }
+  .badge-idea { background: #1E1E22; color: #71717A; }
+
+  .gap-callout { background: #1a1117; border: 1px solid #7F1D1D; border-radius: 8px; padding: 12px 14px; font-size: 12px; color: #FCA5A5; margin-top: 8px; }
+  .gap-callout strong { color: #EF4444; }
+
   .health-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
   .health-good { background: #34D399; }
-  .health-needs-work { background: #FBBF24; }
-  .health-not-started { background: #71717A; }
-  .deal-highlight { border-color: #7C3AED; border-width: 2px; }
+  .health-warn { background: #FBBF24; }
+  .health-bad { background: #EF4444; }
+  .health-none { background: #52525B; }
+
   .activity-item { padding: 8px 12px; border-left: 2px solid #27272A; margin-bottom: 2px; display: flex; gap: 12px; font-size: 12px; }
   .activity-time { color: #52525B; white-space: nowrap; min-width: 65px; font-variant-numeric: tabular-nums; }
   .activity-text { color: #A1A1AA; }
   .activity-section { margin-top: 8px; margin-bottom: 4px; font-size: 11px; font-weight: 600; color: #71717A; }
-  @media (max-width: 600px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } body { padding: 16px; } }
+
+  .cost-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; border-bottom: 1px solid #1E1E22; }
+  .cost-row:last-child { border-bottom: none; }
+
+  @media (max-width: 600px) { .grid-2, .grid-3, .grid-5 { grid-template-columns: 1fr 1fr; } body { padding: 16px; } .revenue-hero .mrr { font-size: 36px; } }
 </style>
 </head>
 <body>
 
-<h1>Mira Project Dashboard</h1>
+<h1>Mission Control</h1>
 <p class="subtitle" id="last-updated">Updated Feb 7, 2026 9:00 AM PST — refreshes hourly</p>
 
-<!-- SUMMARY STATS -->
-<div class="grid-3" style="margin-bottom: 28px;">
-  <div class="stat"><div class="stat-value">$0</div><div class="stat-label">Monthly Revenue</div></div>
-  <div class="stat"><div class="stat-value">11</div><div class="stat-label">Websites Managed</div></div>
-  <div class="stat"><div class="stat-value">8</div><div class="stat-label">Automated Jobs</div></div>
+<!-- ===================== -->
+<!-- 1. REVENUE SCORECARD -->
+<!-- ===================== -->
+<div class="revenue-hero">
+  <div style="font-size:11px;color:#52525B;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Current Monthly Recurring Revenue</div>
+  <div class="mrr">$0</div>
+  <div class="target">Target: <strong>$5,000/mo</strong></div>
+  <div class="progress-bar"><div class="progress-fill" style="width:0.4%"></div></div>
+  <div class="progress-label">0% of target</div>
 </div>
 
-<!-- ============================================ -->
-<!-- LIVE GITHUB ACTIVITY (from data.json) -->
-<!-- ============================================ -->
 <div class="section">
-  <div class="section-header">Live GitHub Activity <span style="font-size:9px;color:#52525B;text-transform:none;letter-spacing:0;">— pulled from GitHub API</span></div>
+  <div class="section-header">Revenue by Channel</div>
+  <div class="card">
+    <div class="channel-row">
+      <span class="channel-name">📝 Content Sites (AdSense/affiliates)</span>
+      <span class="channel-revenue">$0/mo</span>
+      <span class="channel-status">No traffic yet — 46 articles, 0 organic clicks</span>
+    </div>
+    <div class="channel-row">
+      <span class="channel-name">🎬 YouTube (Block Buddies + Stellar Truths)</span>
+      <span class="channel-revenue">$0/mo</span>
+      <span class="channel-status">Not monetized — need 500 subs + 3K watch hours each</span>
+    </div>
+    <div class="channel-row">
+      <span class="channel-name">🚀 MiraOutbound (AI lead gen)</span>
+      <span class="channel-revenue">$0/mo</span>
+      <span class="channel-status">MVP Phase 1 built — no customers</span>
+    </div>
+    <div class="channel-row">
+      <span class="channel-name">📋 ContentBrief.io (SaaS)</span>
+      <span class="channel-revenue">$0/mo</span>
+      <span class="channel-status">Auth blocked — can't onboard users</span>
+    </div>
+    <div class="channel-row">
+      <span class="channel-name">📦 Digital Products (Lemon Squeezy)</span>
+      <span class="channel-revenue">$0/mo</span>
+      <span class="channel-status">Listed, no sales — no traffic source</span>
+    </div>
+    <div class="gap-callout">
+      <strong>Honest assessment:</strong> Zero revenue across all channels. Content sites need 3-6 months of SEO traction. YouTube needs ~10x subscriber growth for monetization. SaaS products have no user acquisition funnel. Digital products have no distribution. The gap between here and $5K/mo is enormous.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- 2. YOUTUBE MONETIZATION -->
+<!-- ===================== -->
+<div class="section">
+  <div class="section-header">YouTube Monetization Tracker</div>
+  <div class="card">
+    <div style="margin-bottom:12px;">
+      <div class="yt-channel">
+        <span class="yt-name">Block Buddies</span>
+        <span class="yt-subs">41 / 500 subs</span>
+        <div class="yt-bar"><div class="yt-bar-fill" style="width:8.2%"></div></div>
+        <span class="yt-pct">8%</span>
+      </div>
+      <div class="yt-channel">
+        <span class="yt-name">Stellar Truths</span>
+        <span class="yt-subs">37 / 500 subs</span>
+        <div class="yt-bar"><div class="yt-bar-fill" style="width:7.4%"></div></div>
+        <span class="yt-pct">7%</span>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="stat"><div class="stat-value">192</div><div class="stat-label">Total Videos</div><div class="stat-sub">147 BB + 45 ST</div></div>
+      <div class="stat"><div class="stat-value">97.7K</div><div class="stat-label">Total Views</div><div class="stat-sub">83K BB + 14.7K ST</div></div>
+      <div class="stat"><div class="stat-value">~2/day</div><div class="stat-label">Publish Rate</div><div class="stat-sub">Need consistency</div></div>
+    </div>
+    <div class="gap-callout" style="margin-top:12px;">
+      <strong>Gap:</strong> At current growth rate (~1 sub/week), monetization is 9+ months away per channel. Need viral content or a different strategy. 192 videos → 78 subscribers total is a poor conversion ratio.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- 3. SEO PIPELINE -->
+<!-- ===================== -->
+<div class="section">
+  <div class="section-header">SEO Pipeline</div>
+  <div class="card">
+    <table class="table">
+      <tr><th>Site</th><th>Articles</th><th>GSC Verified</th><th>Indexed</th><th>Organic Traffic</th></tr>
+      <tr>
+        <td><span class="health-dot health-warn"></span>aitoolsdigest.com</td>
+        <td>17</td><td><span style="color:#FBBF24;">Pending</span></td><td>Unknown</td><td style="color:#EF4444;">0</td>
+      </tr>
+      <tr>
+        <td><span class="health-dot health-warn"></span>saasversus.com</td>
+        <td>15</td><td><span style="color:#FBBF24;">Pending</span></td><td>Unknown</td><td style="color:#EF4444;">0</td>
+      </tr>
+      <tr>
+        <td><span class="health-dot health-warn"></span>devtoolreviews.com</td>
+        <td>14</td><td><span style="color:#FBBF24;">Pending</span></td><td>Unknown</td><td style="color:#EF4444;">0</td>
+      </tr>
+      <tr>
+        <td><span class="health-dot health-good"></span>boothbeacon.org</td>
+        <td>1 + 926 listings</td><td><span style="color:#34D399;">Yes</span></td><td>Yes</td><td style="color:#EF4444;">~0</td>
+      </tr>
+      <tr>
+        <td><span class="health-dot health-good"></span>contentbrief.io</td>
+        <td>0</td><td><span style="color:#EF4444;">No</span></td><td>No</td><td style="color:#EF4444;">0</td>
+      </tr>
+    </table>
+    <div class="grid-3" style="margin-top:12px;">
+      <div class="stat"><div class="stat-value">46</div><div class="stat-label">Total Articles</div></div>
+      <div class="stat"><div class="stat-value red">0</div><div class="stat-label">GSC Verified (content sites)</div></div>
+      <div class="stat"><div class="stat-value red">0</div><div class="stat-label">Organic Clicks/Day</div></div>
+    </div>
+    <div class="gap-callout" style="margin-top:12px;">
+      <strong>Critical blocker:</strong> GSC verification is still pending for all 3 content sites. Without it, we can't submit sitemaps, track indexing, or know if Google sees us. This is the #1 thing to fix.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- 4. ACTIVE PROJECTS -->
+<!-- ===================== -->
+<div class="section">
+  <div class="section-header">Active Projects</div>
+  <div class="card">
+    <table class="table">
+      <tr><th>Project</th><th>Status</th><th>URL</th><th>Last Activity</th></tr>
+      <tr>
+        <td>aitoolsdigest.com</td>
+        <td><span class="badge badge-live">Live</span></td>
+        <td><a href="https://aitoolsdigest.com" style="color:#93C5FD;" target="_blank">aitoolsdigest.com</a></td>
+        <td>Feb 7 — 17 articles</td>
+      </tr>
+      <tr>
+        <td>saasversus.com</td>
+        <td><span class="badge badge-live">Live</span></td>
+        <td><a href="https://saasversus.com" style="color:#93C5FD;" target="_blank">saasversus.com</a></td>
+        <td>Feb 7 — 15 articles</td>
+      </tr>
+      <tr>
+        <td>devtoolreviews.com</td>
+        <td><span class="badge badge-live">Live</span></td>
+        <td><a href="https://devtoolreviews.com" style="color:#93C5FD;" target="_blank">devtoolreviews.com</a></td>
+        <td>Feb 7 — 14 articles</td>
+      </tr>
+      <tr>
+        <td>ContentBrief.io</td>
+        <td><span class="badge badge-blocked">Blocked</span></td>
+        <td><a href="https://contentbrief.io" style="color:#93C5FD;" target="_blank">contentbrief.io</a></td>
+        <td>Feb 6 — auth broken</td>
+      </tr>
+      <tr>
+        <td>MiraOutbound</td>
+        <td><span class="badge badge-building">Building</span></td>
+        <td><a href="https://mira-outbound.vercel.app" style="color:#93C5FD;" target="_blank">mira-outbound.vercel.app</a></td>
+        <td>Feb 7 — Phase 1 MVP done</td>
+      </tr>
+      <tr>
+        <td>Block Buddies (YT)</td>
+        <td><span class="badge badge-live">Live</span></td>
+        <td><a href="https://youtube.com/@BlockBuddies" style="color:#93C5FD;" target="_blank">YouTube</a></td>
+        <td>Feb 6 — v3 videos, 3 experiments</td>
+      </tr>
+      <tr>
+        <td>Stellar Truths (YT)</td>
+        <td><span class="badge badge-building">Building</span></td>
+        <td><a href="https://youtube.com/@StellarTruths" style="color:#93C5FD;" target="_blank">YouTube</a></td>
+        <td>Feb 6 — scripts approved</td>
+      </tr>
+      <tr>
+        <td>Digital Products</td>
+        <td><span class="badge badge-live">Live</span></td>
+        <td><a href="https://miracontentkit.lemonsqueezy.com" style="color:#93C5FD;" target="_blank">Lemon Squeezy</a></td>
+        <td>Feb 5 — listed, 0 sales</td>
+      </tr>
+      <tr>
+        <td>Booth Beacon</td>
+        <td><span class="badge badge-hold">On Hold</span></td>
+        <td><a href="https://boothbeacon.org" style="color:#93C5FD;" target="_blank">boothbeacon.org</a></td>
+        <td>Feb 5 — paused per Jascha</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- 5. COSTS -->
+<!-- ===================== -->
+<div class="section">
+  <div class="section-header">Costs & Burn</div>
+  <div class="card">
+    <div class="cost-row">
+      <span style="color:#A1A1AA;">Anthropic API (Claude Opus 4.6)</span>
+      <span style="color:#fff;font-weight:600;">~$5-15/day est.</span>
+    </div>
+    <div class="cost-row">
+      <span style="color:#A1A1AA;">Vercel (hosting — 11 sites)</span>
+      <span style="color:#fff;font-weight:600;">$20/mo</span>
+    </div>
+    <div class="cost-row">
+      <span style="color:#A1A1AA;">Domains (11 total)</span>
+      <span style="color:#fff;font-weight:600;">~$120/yr</span>
+    </div>
+    <div class="cost-row">
+      <span style="color:#A1A1AA;">Supabase (free tier)</span>
+      <span style="color:#fff;font-weight:600;">$0</span>
+    </div>
+    <div class="cost-row">
+      <span style="color:#A1A1AA;">Lemon Squeezy</span>
+      <span style="color:#fff;font-weight:600;">$0 (% on sales)</span>
+    </div>
+    <div style="margin-top:12px;padding-top:10px;border-top:1px solid #27272A;display:flex;justify-content:space-between;font-size:14px;">
+      <span style="color:#E4E4E7;font-weight:600;">Estimated monthly burn</span>
+      <span style="color:#EF4444;font-weight:700;">~$180-480/mo</span>
+    </div>
+    <div class="gap-callout" style="margin-top:10px;">
+      <strong>Unit economics:</strong> At $0 revenue and ~$300/mo average cost, we're pure burn. API costs are the biggest variable — need to track actual Anthropic billing.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- 6. GITHUB ACTIVITY (secondary) -->
+<!-- ===================== -->
+<div class="section">
+  <div class="section-header">GitHub Activity <span style="font-size:9px;color:#52525B;text-transform:none;letter-spacing:0;">— recent commits</span></div>
   <div class="card" id="github-activity-card">
-    <div class="card-body" id="github-commits" style="font-size:12px;color:#71717A;">Loading...</div>
+    <div id="github-commits" style="font-size:12px;color:#71717A;">Loading...</div>
   </div>
 </div>
 
-<!-- ============================================ -->
-<!-- LIVE SITE TRAFFIC (Fathom Analytics) -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Site Traffic <span style="font-size:9px;color:#52525B;text-transform:none;letter-spacing:0;">— Fathom Analytics</span></div>
-  <div class="card" id="fathom-card">
-    <div class="card-body" id="fathom-data" style="font-size:12px;color:#71717A;">
-      ⚠️ Fathom API key needs refresh — <a href="https://app.usefathom.com/api" style="color:#93C5FD;" target="_blank">generate a new key</a> and update openclaw.json. Once valid, traffic data will appear here automatically.
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- RECENT ACTIVITY LOG -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Recent Activity</div>
-  <div class="card">
-    <div class="card-body">
-      <div class="activity-section">TODAY — Feb 7, 2026</div>
-      <div class="activity-item"><span class="activity-time">8:00 AM</span><span class="activity-text">Dashboard refresh. Content sites growing: aitoolsdigest 17, saasversus 15, devtoolreviews 14 articles. MiraOutbound MVP Phase 1 shipped.</span></div>
-      <div class="activity-item"><span class="activity-time">6:00 AM</span><span class="activity-text">Morning briefing delivered. Overnight work: contact mapping (1,728 contacts), SOUL.md rewrite, peptide project scaffolded</span></div>
-      <div class="activity-item"><span class="activity-time">12:00 AM</span><span class="activity-text">Late session: Claude Code agent teams first use (4 agents), MiraOutbound built (1,052 lines, 17 files), contact phone lookup built, peptide data organized</span></div>
-
-      <div class="activity-section">YESTERDAY — Feb 6, 2026</div>
-      <div class="activity-item"><span class="activity-time">8:00 PM</span><span class="activity-text">Eleanore Product Bible created, Parlor Cigarettes copy finalized, MiraOutbound product spec complete</span></div>
-      <div class="activity-item"><span class="activity-time">7:00 PM</span><span class="activity-text">Eleanore regulatory monitor + strategic plan delivered, 3 Parlor Cigarette back panels written</span></div>
-      <div class="activity-item"><span class="activity-time">4:25 PM</span><span class="activity-text">OpenClaw Playbook deprioritized as standalone product — pivoting to content fuel or agent network tool</span></div>
-      <div class="activity-item"><span class="activity-time">4:00 PM</span><span class="activity-text">Mira Outbound site live, MiraContentKit on Lemon Squeezy, Moltbook week 1 report posted</span></div>
-      <div class="activity-item"><span class="activity-time">2:30 PM</span><span class="activity-text">Intelligence systems built: contact graph, YouTube experiments, Fathom meeting extractor, knowledge extraction, Telegram recorder bot</span></div>
-      <div class="activity-item"><span class="activity-time">2:15 PM</span><span class="activity-text">3 new Block Buddies v3 videos uploaded, dashboard deployed to Vercel, favicons on all sites</span></div>
-      <div class="activity-item"><span class="activity-time">12:00 PM</span><span class="activity-text">All 3 content sites restyled, article batch 2 complete (8 new articles), ContentBrief.io redesigned</span></div>
-      <div class="activity-item"><span class="activity-time">6:00 AM</span><span class="activity-text">Morning briefing + X/Twitter research delivered, Variant designs for Booth Beacon + ContentBrief.io</span></div>
-
-      <div class="activity-section">Feb 5, 2026</div>
-      <div class="activity-item"><span class="activity-time">All day</span><span class="activity-text">3 domains acquired, keyword research (30 keywords), SaaS MVP spec, YouTube scripts approved, first digital product built</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- DAILY BRIEFING -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Daily Briefing — 6:00 AM PST</div>
-  <div class="card">
-    <div class="card-title"><span class="badge badge-running">Running Daily</span> Morning Briefing</div>
-    <div class="card-body">
-      Delivered to Telegram every day at 6am. Covers:
-      <ul>
-        <li>Today's calendar events (work + personal)</li>
-        <li>Urgent unread emails (last 12h)</li>
-        <li>Weather forecast for San Francisco</li>
-        <li>Any overnight alerts or system issues</li>
-      </ul>
-      <p style="margin-top:6px">Last delivered: <strong>Feb 7, 2026 6:00 AM</strong></p>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- OPENCLAW SYSTEM -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">OpenClaw System</div>
-  <div class="card">
-    <div class="card-title"><span class="badge badge-current">Up to Date</span> OpenClaw Software</div>
-    <div class="card-body">
-      <table class="table">
-        <tr><th>Detail</th><th>Value</th></tr>
-        <tr><td>Current version</td><td>2026.2.4 (commit 98a56ab38)</td></tr>
-        <tr><td>Available updates</td><td>0 pending patches</td></tr>
-        <tr><td>Model</td><td>Claude Opus 4.6 (anthropic/claude-opus-4-6)</td></tr>
-        <tr><td>Last update check</td><td>Feb 6, 2026</td></tr>
-      </table>
-      <p style="margin-top:8px; font-size:12px; color:#52525B;">Recent patches applied:</p>
-      <div style="font-size:11px; color:#52525B; font-family:monospace; margin-top:4px;">
-        98a56ab — Docs: Clear naming for the three Miras<br>
-        dd484cf — Fix: Use they/them pronouns for Mira<br>
-        6bbca67 — Council: Native tool integration with automatic routing<br>
-        06910e4 — Docs: Council integration status and usage guide<br>
-        8708df1 — Council: Enable Council integration for production use
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- THE DEAL: $5K/MONTH AUTONOMOUS BUSINESS -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">The Deal — $5K/Month Autonomous Business</div>
-
-  <div class="card deal-highlight">
-    <div class="card-title"><span class="badge badge-live">Live and Improving</span> SEO Content Sites</div>
-    <div class="card-body">
-      <table class="table">
-        <tr><th>Site</th><th>Articles</th><th>Target</th><th>Progress</th></tr>
-        <tr><td>aitoolsdigest.com</td><td>17</td><td>25</td><td><div class="progress-bar"><div class="progress-fill progress-blue" style="width:68%"></div></div></td></tr>
-        <tr><td>saasversus.com</td><td>15</td><td>25</td><td><div class="progress-bar"><div class="progress-fill progress-blue" style="width:60%"></div></div></td></tr>
-        <tr><td>devtoolreviews.com</td><td>14</td><td>25</td><td><div class="progress-bar"><div class="progress-fill progress-blue" style="width:56%"></div></div></td></tr>
-      </table>
-      <p style="margin-top:8px"><span class="next-action">Next:</span> GSC sitemaps, meta/schema optimization, push toward 25+ articles each</p>
-      <p class="eta">Estimated: SEO optimization by Feb 10, 25 articles each by Feb 14</p>
-    </div>
-  </div>
-
-  <div class="card deal-highlight">
-    <div class="card-title"><span class="badge badge-live">Live and Improving</span> ContentBrief.io — Micro SaaS</div>
-    <div class="card-body">
-      Brief generation pipeline works (Brave Search → Cheerio → Claude). Variant redesign deployed. Favicons added.
-      <p style="margin-top:6px"><strong style="color:#FBBF24;">Blocked:</strong> Supabase auth rate limiting + redirect URL config</p>
-      <p style="margin-top:4px"><span class="next-action">Next:</span> Fix auth, verify full user journey, then Stripe integration ($29/$99)</p>
-    </div>
-  </div>
-
-  <div class="card deal-highlight">
-    <div class="card-title"><span class="badge badge-live">Listed on Lemon Squeezy</span> Digital Products — SEO Content OS</div>
-    <div class="card-body">
-      MiraContentKit on Lemon Squeezy (store ID: 287586). 7 Notion templates, SEO Content OS.
-      <p style="margin-top:6px"><span class="next-action">Next:</span> Drive traffic via content sites, monitor sales</p>
-    </div>
-  </div>
-
-  <div class="card deal-highlight">
-    <div class="card-title"><span class="badge badge-live">Live</span> Mira Outbound — AI Lead Gen Agency</div>
-    <div class="card-body">
-      AI-powered appointment booking service. MVP Phase 1 complete: auth, onboarding wizard, dashboard, campaigns, prospects, DB schema (1,052 lines, 17 files). Built via Claude Code agent teams.
-      <p style="margin-top:6px"><span class="next-action">Next:</span> Phase 2 — chatbot, lead gen, meeting booking per Jascha</p>
-    </div>
-  </div>
-
-  <div class="card deal-highlight">
-    <div class="card-title"><span class="badge badge-owned">Mira-Owned</span> YouTube Channels</div>
-    <div class="card-body">
-      <table class="table">
-        <tr><th>Channel</th><th>Subscribers</th><th>Views</th><th>Videos</th><th>Status</th></tr>
-        <tr><td>Block Buddies</td><td>41 → 500 target</td><td>83K</td><td>147</td><td>v3 publishing, 3 experiments running</td></tr>
-        <tr><td>Stellar Truths</td><td>37</td><td>14.7K</td><td>45</td><td>Scripts approved, production next</td></tr>
-      </table>
-      <p style="margin-top:8px"><span class="next-action">Next:</span> Monitor v3 metrics, produce Stellar Truths batch, run A/B experiments</p>
-      <p class="eta">Estimated: ST first batch by Feb 8, experiment results in 2 weeks</p>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- ALL WEBSITES — UNIFIED SEO HEALTH -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">All Websites — SEO Health</div>
-  <div class="card">
-    <div class="card-body">
-      <table class="table">
-        <tr><th>Site</th><th>Purpose</th><th>GSC</th><th>GA4</th><th>Content</th><th>SEO Status</th></tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>aitoolsdigest.com</td>
-          <td>AI tool reviews</td><td>Pending</td><td>Yes</td>
-          <td>17 articles, adding more</td>
-          <td><span class="health-dot health-needs-work"></span>Needs meta, schema, links</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>saasversus.com</td>
-          <td>SaaS comparisons</td><td>Pending</td><td>Yes</td>
-          <td>15 comparisons, adding more</td>
-          <td><span class="health-dot health-needs-work"></span>Needs meta, schema, links</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>devtoolreviews.com</td>
-          <td>Dev tool reviews</td><td>Pending</td><td>Yes</td>
-          <td>14 reviews, adding more</td>
-          <td><span class="health-dot health-needs-work"></span>Needs meta, schema, links</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>contentbrief.io</td>
-          <td>SaaS product</td><td>No</td><td>No</td>
-          <td>Product page live</td>
-          <td><span class="health-dot health-needs-work"></span>Needs analytics setup</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>boothbeacon.org</td>
-          <td>Photo booth directory</td><td>Yes</td><td>Yes</td>
-          <td>926 booths, 1 blog post</td>
-          <td><span class="health-dot health-needs-work"></span>Needs optimization</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>kaykas.com</td>
-          <td>Personal brand</td><td>Yes</td><td>Yes</td>
-          <td>Existing</td>
-          <td><span class="health-dot health-not-started"></span>Not started</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>deareleanore.com</td>
-          <td>Eleanore brand</td><td>Yes</td><td>Yes</td>
-          <td>Existing</td>
-          <td><span class="health-dot health-not-started"></span>Not started</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>onbeingright.com</td>
-          <td>Content</td><td>Yes</td><td>Yes</td>
-          <td>Existing</td>
-          <td><span class="health-dot health-not-started"></span>Not started</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>whoissharon.com</td>
-          <td>Content</td><td>Yes</td><td>Yes</td>
-          <td>Existing</td>
-          <td><span class="health-dot health-not-started"></span>Not started</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>genesovereign.org</td>
-          <td>Content</td><td>Yes</td><td>Yes</td>
-          <td>Existing</td>
-          <td><span class="health-dot health-not-started"></span>Not started</td>
-        </tr>
-        <tr>
-          <td><span class="health-dot health-good"></span>miraoutbound.com</td>
-          <td>AI lead gen agency</td><td>No</td><td>No</td>
-          <td>Landing page live</td>
-          <td><span class="health-dot health-needs-work"></span>Design polish in progress</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- VISITING MEDIA -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Visiting Media</div>
-  <div class="card">
-    <div class="card-title"><span class="badge badge-running">Running Automatically</span> Weekly Competitive Analysis</div>
-    <div class="card-body">15 competitors tracked. Report delivered every Monday 8am. First analysis delivered Feb 6.</div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- BOOTH BEACON -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Booth Beacon</div>
-  <div class="card">
-    <div class="card-title"><span class="badge badge-hold">On Hold</span> Photo Booth Directory</div>
-    <div class="card-body">
-      926 booths, 160 sources. Firecrawl v4 crawler running. 1 city guide published (SF). Paused per Jascha.
-      <p style="margin-top:6px"><span class="next-action">Next:</span> Resume when Jascha says go — city guides (NYC, Chicago, Berlin, Portland) queued</p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title"><span class="badge badge-hold">On Hold</span> Booth Beacon Site Redesign</div>
-    <div class="card-body">4 Variant design options saved. Paused per Jascha — resume when ready.</div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- INFRASTRUCTURE & INTELLIGENCE SYSTEMS -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Infrastructure and Intelligence Systems</div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title"><span class="badge badge-built">Built, Needs Daily Automation</span></div>
-      <div class="card-body">
-        <strong>Knowledge Extraction</strong><br>
-        Extracts learnings from conversations, iMessages, and meetings. Scripts work when run manually. Needs to be scheduled to run daily without human intervention.
-        <p class="eta">Mira will set this up by Feb 7</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-deployed">Built and Running</span></div>
-      <div class="card-body">
-        <strong>Fathom Meeting Intelligence</strong><br>
-        Pulls meeting transcripts after calls, extracts people context and action items. 18 meetings already indexed.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-deployed">Built and Running</span></div>
-      <div class="card-body">
-        <strong>Contact Intelligence / People Graph</strong><br>
-        Tracks relationship health with decay scoring. Alerts when important contacts go cold. Syncs from Telegram, Gmail, iMessage.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-deployed">Built and Running</span></div>
-      <div class="card-body">
-        <strong>YouTube Experiment Framework</strong><br>
-        A/B testing for content (music vs no music, emoji titles, question vs statement). 3 experiments active.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-built">Built, Waiting on Jascha</span></div>
-      <div class="card-body">
-        <strong>Telegram Message Recorder</strong><br>
-        Logs all Telegram messages for knowledge extraction. Ready to go — Jascha needs to create a bot via @BotFather (60 seconds).
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-not-built">Not Yet Built</span></div>
-      <div class="card-body">
-        <strong>Weekly "Act on Learnings" Review</strong><br>
-        Automated weekly review of extracted knowledge — what to act on vs. archive.
-        <p class="eta">Mira will build by Feb 8</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-not-built">Not Yet Built</span></div>
-      <div class="card-body">
-        <strong>Two-Tier Compute</strong><br>
-        Formalize which tasks use cheap models (Sonnet) vs. expensive ones (Opus) to control costs.
-        <p class="eta">Mira will build by Feb 9</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="badge badge-not-built">Not Yet Built</span></div>
-      <div class="card-body">
-        <strong>Container Isolation</strong><br>
-        Sandbox tool execution for safety. Research phase.
-        <p class="eta">Mira will build by Feb 12</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- AUTOMATED JOBS -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Automated Jobs — Things Mira Does on a Schedule</div>
-  <div class="card">
-    <div class="card-body">
-      <table class="table">
-        <tr><th>What It Does</th><th>When</th><th>Status</th></tr>
-        <tr><td>Morning briefing (calendar, email, weather)</td><td>6am daily</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>X/Twitter research (OpenClaw, Claude Code, agents)</td><td>7am daily</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>VM competitive analysis (15 competitors)</td><td>Monday 8am</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>OpenClaw software update check</td><td>Daily</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>Dashboard refresh</td><td>Hourly</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>Eleanore regulatory monitor</td><td>Monday 9am</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>Donny/LYT follow-up draft</td><td>Monday 9am</td><td><span class="badge badge-running">Running</span></td></tr>
-        <tr><td>Knowledge extraction (conversations, meetings)</td><td>Daily</td><td><span class="badge badge-built">Needs scheduling</span></td></tr>
-        <tr><td>Weekly learnings review</td><td>Weekly</td><td><span class="badge badge-not-built">Not yet built</span></td></tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- ============================================ -->
-<!-- JASCHA TO DO NEXT -->
-<!-- ============================================ -->
-<div class="section">
-  <div class="section-header">Jascha To Do Next</div>
-  <ul class="todo-list">
-    <li><strong>Create BotFather token</strong> — Open Telegram → search @BotFather → /newbot → name it "Mira Recorder" → send the token to Mira. Takes 60 seconds. Unlocks automatic message recording.</li>
-    <li><strong>Verify contentbrief.io auth</strong> — Visit contentbrief.io, try signing up. Let Mira know if it works or breaks.</li>
-    <li><strong>Review Mira Outbound design</strong> — Check mira-outbound.vercel.app once Variant polish is done</li>
-  </ul>
-</div>
-
-<p style="font-size: 11px; color: #52525B; margin-top: 32px; text-align: center;">Generated by Mira — auto-refreshes hourly at mira-dashboard-site.vercel.app</p>
+<p style="font-size: 11px; color: #52525B; margin-top: 32px; text-align: center;">Mission Control — generated by Mira · <a href="https://mira-dashboard-site.vercel.app" style="color:#52525B;">mira-dashboard-site.vercel.app</a></p>
 
 <script>
 (async function() {
   try {
     const res = await fetch('data.json?' + Date.now());
     const data = await res.json();
-
-    // Update timestamp
     const gen = new Date(data.generated);
     document.getElementById('last-updated').textContent =
-      `Updated ${gen.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'})} ${gen.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'})} PST — refreshes hourly · ${data.repoCount} repos tracked`;
-
-    // Render GitHub commits
+      `Updated ${gen.toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'})} ${gen.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'})} PST — refreshes hourly`;
     const el = document.getElementById('github-commits');
     if (data.recentCommits && data.recentCommits.length) {
-      let currentDay = '';
-      let html = '';
-      for (const c of data.recentCommits.slice(0, 20)) {
+      let currentDay = '', html = '';
+      for (const c of data.recentCommits.slice(0, 15)) {
         const d = new Date(c.date);
         const day = d.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric', timeZone:'America/Los_Angeles'});
-        if (day !== currentDay) {
-          currentDay = day;
-          html += `<div class="activity-section">${day}</div>`;
-        }
+        if (day !== currentDay) { currentDay = day; html += `<div class="activity-section">${day}</div>`; }
         const time = d.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'});
-        const repo = c.repo;
         const msg = c.message.length > 60 ? c.message.slice(0,60) + '…' : c.message;
-        html += `<div class="activity-item"><span class="activity-time">${time}</span><span class="activity-text"><strong style="color:#C4B5FD">${repo}</strong> — ${msg}</span></div>`;
+        html += `<div class="activity-item"><span class="activity-time">${time}</span><span class="activity-text"><strong style="color:#C4B5FD">${c.repo}</strong> — ${msg}</span></div>`;
       }
       el.innerHTML = html;
     }
-
-    // Repo activity summary
-    const repoCounts = {};
-    for (const c of data.recentCommits) {
-      repoCounts[c.repo] = (repoCounts[c.repo] || 0) + 1;
-    }
-
-  } catch(e) {
-    console.warn('Failed to load live data:', e);
-  }
+  } catch(e) { console.warn('Failed to load live data:', e); }
 })();
 </script>
 
